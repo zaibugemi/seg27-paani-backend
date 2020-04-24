@@ -6,7 +6,8 @@ const router = express.Router(); // create an instance of a router, which will s
 
 router.get('/', (req, res, next) => { // define how to handle requests to www.[whatever].com/user
     res.status(200).json({ // return 200 OK with a body that reads {message: 'User'}. Go to this URL and see what happens.
-        message: 'User'
+        message: 'User',
+        error: 'null'
     });
 });
 

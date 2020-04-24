@@ -9,7 +9,7 @@ class User { // define a User object. Has the same attributes as a user in the d
     }
     
     async createUser () { // simply executes a query to add user to database. 
-        return await query(`INSERT INTO users set ?`, [this.user]).catch((error) => {console.log(error)});
+        return await query(`INSERT INTO user set ?`, [this.user]);
     }
 
     // more user methods will go here, e.g userExists(), deleteUser() etc

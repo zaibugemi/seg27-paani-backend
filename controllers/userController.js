@@ -13,11 +13,17 @@ exports.create_new_user = async (request, response) => {
 
     //////////////////////////////////////////////////////////////////
     
-    result = await user.createUser().catch((error) => { // calls the User object ka createUser method, which inserts the record into the database.
-                                                            // returns a promise, so catch errors in case something goes awry during insertion.
-        return response.json('An error occured.') // send a response back to the client (aka the app)
-    });
-    return response.status(200).json({ // response in case no error occured and 
-        message: 'OK'
+    result = await user.createUser()
+    .then(() => {
+        return response.status(200).json({ // response in case no error occured and 
+            message: 'Record inserted',
+            error: null
+        })
     })
+    .catch((error) => { // calls the User object ka createUser method, which inserts the record into the database.
+                                            // returns a promise, so catch errors in case something goes awry during insertion.
+        return response.status(400).json({
+            error: error
+        }) // send a response back to the client (aka the app)
+    });
 } 

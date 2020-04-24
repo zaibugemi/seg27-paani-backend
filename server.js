@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyparser = require('body-parser'); // used to extract parameters (e.g email and password in case of login) from http post requests
 
+const morgan = require('morgan'); // logging
+
 const app = express();
+app.use(morgan('combined'))
 app.use(bodyparser.json()) // tell express that all http requests should pass through bodyparser first
 app.use(bodyparser.urlencoded({ extended: true })) //
 
@@ -14,3 +17,5 @@ app.use('/users', userRoutes); // tell express to forward requests at www.[whate
 
 port = 7777
 app.listen(port)
+
+console.log("Server up. Listening on port", port);
