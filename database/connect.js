@@ -1,13 +1,9 @@
 // provides a connection to an mysql database
 
 const mysql = require('mysql');
+const credentials = require('./credentials');
 
-connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'paani'
-    });
+connection = mysql.createConnection(credentials);
     
 connection.connect((error) => {
     if (error) {

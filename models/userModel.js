@@ -8,7 +8,7 @@ class User { // define a User object. Has the same attributes as a user in the d
         this.password = user.password
     }
     
-    createUser = async () => { // simply executes a query to add user to database. 
+    async createUser () { // simply executes a query to add user to database. 
         return await query(`INSERT INTO users set ?`, [this.user]).catch((error) => {console.log(error)});
     }
 
