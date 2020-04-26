@@ -1,9 +1,9 @@
 // provides a connection to an mysql database
 
 const mysql = require('mysql');
-const credentials = require('./credentials');
+const config = require('./db.config');
 
-pool = mysql.createPool(credentials);
+pool = mysql.createPool(config);
 
 module.exports = pool
 

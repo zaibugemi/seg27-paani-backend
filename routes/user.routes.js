@@ -1,5 +1,5 @@
 const express = require('express');
-const userController = require('../controllers/userController'); // handles transaction with the database, and returns a response accordingly.
+const userController = require('../controllers/user.controller'); // handles transaction with the database, and returns a response accordingly.
                                                                  // any checks e.g email taken are also handled by this
 
 const router = express.Router(); // create an instance of a router, which will store all our routes defined below
@@ -7,7 +7,7 @@ const router = express.Router(); // create an instance of a router, which will s
 router.get('/', (req, res, next) => { // define how to handle requests to www.[whatever].com/user
     res.status(200).json({ // return 200 OK with a body that reads {message: 'User'}. Go to this URL and see what happens.
         message: 'User',
-        error: 'null'
+        error: false
     });
 });
 
