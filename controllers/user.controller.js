@@ -1,4 +1,4 @@
-const User = require('../models/user.model'); // model of the user. A class with attributes a user has e.g email, password
+const Users = require('../models/user.model'); // model of the user. A class with attributes a user has e.g email, password
                                              // methods of this class interact with the database directly. You will write your queries there.
 
 exports.create_new_user = async (request, response) => {
@@ -12,11 +12,11 @@ exports.create_new_user = async (request, response) => {
         })
     }
 
-    await User.getByEmail(user.email_address)
+    await Users.getByEmail(user.email_address)
     .then(async (result) => {
         if(result.length) return response.status(400).json({message: 'An account with that email address already exists', error: true})
         else {
-            result = await User.create(user)
+            result = await Users.create(user)
             .then(() => {
                 return response.status(200).json({
                     message: 'Record inserted',
@@ -26,4 +26,14 @@ exports.create_new_user = async (request, response) => {
         }
     }).catch((error) => {return response.status(400).json({message: error, error: true})});
     
-} 
+}
+
+exports.get_all_users = async (request, response) => {
+    await Users.getAll()
+    .then((result) => {
+        return response.status(200).json({
+            message: result,
+            error: false
+        });
+    }).catch((error) => {return response.status(400).json({message: error, error: true})});
+}

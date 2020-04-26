@@ -6,6 +6,10 @@ model = {
         return await query(`INSERT INTO user set ?`, [user]);
     },
 
+    getAll: async () => {
+        return await query(`SELECT * FROM user`);
+    },
+
     getByEmail: async (email_address) => {
         return await query(`SELECT * FROM user WHERE email_address = ?`, [email_address]);
     }
