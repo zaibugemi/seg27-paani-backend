@@ -1,3 +1,5 @@
+INSTALL: open terminal in this folder, run 'npm install'
+
 go through files in this order:
 	server.js
 	routes/userRoute.js
