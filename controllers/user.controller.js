@@ -49,8 +49,10 @@ exports.get_all_users = async (request, response) => {
 }
 
 exports.login = async (request, response) => {
+
     email_address = request.body.email_address;
     password = request.body.password;
+    
     await Users.getByEmail(email_address)
     .then((result) => {
         if(result.length) {

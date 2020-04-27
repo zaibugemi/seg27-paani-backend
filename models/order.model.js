@@ -8,7 +8,9 @@ model = {
     },
 
     getAll: async () => {
-        return await query(`SELECT * FROM paani.order`);
+        return await query(`SELECT * FROM paani.order 
+                            INNER JOIN paani.package ON paani.order.package_id = paani.package.package_id
+                            INNER JOIN paani.company ON paani.package.comp_id = paani.company.company_id`);
     },
 }
 
