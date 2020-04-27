@@ -34,3 +34,13 @@ exports.get_all_orders = async (request, response) => {
         });
     }).catch((error) => {return response.status(400).json({message: error, error: true})});
 }
+
+exports.get_all_orders_by_company = async (company_id, request, response) => {
+    await Orders.getAllByCompanyID(company_id)
+    .then((result) => {
+        return response.status(200).json({
+            message: result,
+            error: false
+        });
+    }).catch((error) => {return response.status(400).json({message: error, error: true})});
+}

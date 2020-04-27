@@ -52,17 +52,16 @@ exports.login = async (request, response) => {
 
     email_address = request.body.email_address;
     password = request.body.password;
-    
+
     await Users.getByEmail(email_address)
     .then((result) => {
         if(result.length) {
-            return response.status(200).json({message: 'OK', error: false});
+            result = result.map(v => Object.assign({}, v));
+            if(password == result[0].password) return response.status(200).json({message: 'OK', error: false});
         }
-        else {
-            return response.status(400).json({
-                message: 'Incorrect email address or password',
-                error: true
-            })
-        }
+        return response.status(400).json({
+            message: 'Incorrect email address or password',
+            error: true
+        })
     }).catch((error) => {return response.status(400).json({message: error, error: true})});
 }
