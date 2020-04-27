@@ -9,9 +9,15 @@ router.get('/', (req, res, next) => { // define how to handle requests to www.[w
 });
 
 router.post('/', (req, res, next) => {
-    userController.create_new_user(req, res); // POSTing an email address and password to www.[whatever].com/user tells the controller
-                                              // to create a new user in the database with said credentials. See implementation in
-                                              // controllers/userController.js
+    userController.create_new_user(req, res);
+})
+
+router.get('/:email', (req, res, next) => {
+    userController.check_user_exists(req.params.email, req, res);
+})
+
+router.post('/login', (req, res, next) => {
+    userController.login(req, res);
 })
 
 module.exports = router // export the router, so these routes can be made available in other scripts that import them using require().

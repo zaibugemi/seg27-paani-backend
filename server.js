@@ -9,10 +9,12 @@ app.use(bodyparser.urlencoded({ extended: true })) //
 
 // setting up routes
 const userRoutes = require('./routes/user.routes'); // routes related to users are defined in routes/user.routes.js.
+const customerRoutes = require('./routes/customer_routes');
 const orderRoutes = require('./routes/order.routes');
 //// IMPORT YOUR OWN ROUTES HERE !!
 
 app.use('/users', userRoutes); // tell express to forward requests at www.[whatever].com/users or any subdirectory of /users to userRoutes.js
+app.use('/customers', customerRoutes);
 app.use('/orders', orderRoutes);
 
 port = process.env.PORT || 7777
