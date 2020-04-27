@@ -12,11 +12,22 @@ exports.create_new_customer = async (request, response) => {
         })
     }
 
-    await Customer.create_new_customer(customer)
+    await Customer.create(customer)
     .then(() => {
         return response.status(200).json({
             message: 'Customer registered!',
             error: false
         })
     }).catch((error) => {return response.status(400).json({message: error, error: true})});
+	
+}
+
+exports.get_all_customers = async (request, response) => {
+	await Customer.getAll()
+	.then((result) => {
+		return response.status(200).json({
+			message:result,
+			error:false
+		})
+	}).catch((error) => {return response.status(400).json({message: error, error: true})});
 }
